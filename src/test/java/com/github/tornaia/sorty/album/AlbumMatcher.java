@@ -1,7 +1,7 @@
 package com.github.tornaia.sorty.album;
 
 import com.github.tornaia.sorty.image.Image;
-import com.github.tornaia.sorty.test.AbstractTypeSafeDiagnosingMatcher;
+import com.github.tornaia.sorty.matcher.AbstractTypeSafeDiagnosingMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsAnything;

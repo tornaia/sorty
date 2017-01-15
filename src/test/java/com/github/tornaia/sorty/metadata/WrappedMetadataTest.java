@@ -21,24 +21,32 @@ import static org.junit.Assert.*;
 
 public class WrappedMetadataTest {
 
-    private String sampleFile = "/exif.test.image.jpg";
+    private String exifImage = "/exif.jpg";
+    private String blankImage = "/blank.jpg";
 
     @Test
     public void wrappedMetadataRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         assertNotNull(wrappedMetadata);
     }
 
     @Test
     public void gpsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         Optional<GpsDirectory> gps = wrappedMetadata.getGPS();
         assertTrue(gps.isPresent());
     }
 
     @Test
+    public void gpsNotPresent() throws Exception {
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(blankImage);
+        Optional<GpsDirectory> gps = wrappedMetadata.getGPS();
+        assertFalse(gps.isPresent());
+    }
+
+    @Test
     public void geoLocationIsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         Optional<GpsDirectory> gps = wrappedMetadata.getGPS();
         GpsDirectory gpsDirectory = gps.get();
         GeoLocation geoLocation = gpsDirectory.getGeoLocation();
@@ -48,7 +56,7 @@ public class WrappedMetadataTest {
 
     @Test
     public void dateIsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         Optional<GpsDirectory> gps = wrappedMetadata.getGPS();
         GpsDirectory gpsDirectory = gps.get();
 
@@ -57,34 +65,34 @@ public class WrappedMetadataTest {
 
     @Test
     public void exifIFD0IsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         Optional<ExifIFD0Directory> exifIFD0 = wrappedMetadata.getExifIFD0();
         assertTrue(exifIFD0.isPresent());
     }
 
     @Test
     public void modelIsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         assertEquals("SM-G935F", wrappedMetadata.getModel().get());
     }
 
     @Test
     public void exifSubIFD0IsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         Optional<ExifSubIFDDirectory> exifSubIFD = wrappedMetadata.getExifSubIFD();
         assertTrue(exifSubIFD.isPresent());
     }
 
     @Test
     public void exifImageWidthIsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         Optional<Double> exifImageWidth = wrappedMetadata.getWidth();
         assertEquals(4032D, exifImageWidth.get(), 0.0000001D);
     }
 
     @Test
     public void exifImageHeightIsRead() throws Exception {
-        WrappedMetadata wrappedMetadata = getWrappedMetadata(sampleFile);
+        WrappedMetadata wrappedMetadata = getWrappedMetadata(exifImage);
         Optional<Double> exifImageHeight = wrappedMetadata.getHeight();
         assertEquals(3024D, exifImageHeight.get(), 0.0000001D);
     }

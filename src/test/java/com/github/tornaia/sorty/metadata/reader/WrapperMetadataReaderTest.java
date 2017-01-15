@@ -1,12 +1,10 @@
 package com.github.tornaia.sorty.metadata.reader;
 
-import com.drew.imaging.ImageProcessingException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.Assert.assertNotNull;
@@ -14,14 +12,18 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(MockitoJUnitRunner.class)
 public class WrapperMetadataReaderTest {
 
-    private String sampleFile = "/exif.test.image.jpg";
-
     @InjectMocks
     private MetadataReader metadataReader;
 
     @Test
-    public void imageIsRead() throws ImageProcessingException, IOException {
-        InputStream resourceAsStream = getClass().getResourceAsStream(sampleFile);
+    public void exifImageIsRead() throws Exception {
+        InputStream resourceAsStream = getClass().getResourceAsStream("/exif.jpg");
+        assertNotNull(metadataReader.read(resourceAsStream));
+    }
+
+    @Test
+    public void blankImageIsRead() throws Exception {
+        InputStream resourceAsStream = getClass().getResourceAsStream("/blank.jpg");
         assertNotNull(metadataReader.read(resourceAsStream));
     }
 }

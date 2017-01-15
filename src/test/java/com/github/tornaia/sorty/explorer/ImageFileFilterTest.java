@@ -1,6 +1,5 @@
 package com.github.tornaia.sorty.explorer;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;

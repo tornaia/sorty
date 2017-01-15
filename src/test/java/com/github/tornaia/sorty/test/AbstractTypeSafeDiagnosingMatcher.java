@@ -1,4 +1,4 @@
-package com.github.tornaia.sorty.metadata.matcher;
+package com.github.tornaia.sorty.test;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

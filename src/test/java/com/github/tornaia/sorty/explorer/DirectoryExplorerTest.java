@@ -1,6 +1,7 @@
 package com.github.tornaia.sorty.explorer;
 
-import com.github.tornaia.sorty.explorer.matcher.PathMatcher;
+import com.github.tornaia.sorty.algorithm.Images;
+import com.github.tornaia.sorty.image.Image;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -10,13 +11,13 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.File;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
+import java.util.function.Consumer;
 
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DirectoryExplorerTest {
@@ -25,12 +26,10 @@ public class DirectoryExplorerTest {
     private DirectoryExplorer directoryExplorer;
 
     private Path directory;
-    private String directoryAsAbsolutePath;
 
     @Before
     public void initDirectory() throws Exception {
         directory = Files.createTempDirectory("junit");
-        directoryAsAbsolutePath = directory.toAbsolutePath().toString();
     }
 
     @After
@@ -40,27 +39,44 @@ public class DirectoryExplorerTest {
 
     @Test
     public void nonExistingDirectory() throws Exception {
-        List<Path> images = directoryExplorer.getImageFilesRecursively(new File("non-existing-directory").toPath());
-        assertTrue(images.isEmpty());
+        Images images = directoryExplorer.getImages(new File("non-existing-directory").toPath());
+        Consumer<Image> counter = mock(Consumer.class);
+
+        images.apply(counter);
+
+        verifyZeroInteractions(counter);
     }
 
     @Test
     public void emptyDirectory() throws Exception {
-        List<Path> images = directoryExplorer.getImageFilesRecursively(directory);
-        assertTrue(images.isEmpty());
+        Images images = directoryExplorer.getImages(directory);
+        Consumer<Image> counter = mock(Consumer.class);
+
+        images.apply(counter);
+
+        verifyZeroInteractions(counter);
     }
 
     @Test
     public void withOneImageFile() throws Exception {
-        Files.createFile(directory.resolve("sample.jpg"));
-        List<Path> images = directoryExplorer.getImageFilesRecursively(directory);
-        assertThat(images, hasItems(new PathMatcher(directoryAsAbsolutePath, "sample.jpg")));
+        InputStream imageInputStream = getClass().getResourceAsStream("/exif.jpg");
+        Files.copy(imageInputStream, directory.resolve("exif.jpg"));
+        Images images = directoryExplorer.getImages(directory);
+        Consumer counter = mock(Consumer.class);
+
+        images.apply(counter);
+
+        verify(counter).accept(any(Image.class));
     }
 
     @Test
     public void withOneNonImageFile() throws Exception {
         Files.createFile(directory.resolve("sample.txt"));
-        List<Path> images = directoryExplorer.getImageFilesRecursively(directory);
-        assertTrue(images.isEmpty());
+        Images images = directoryExplorer.getImages(directory);
+        Consumer<Image> counter = mock(Consumer.class);
+
+        images.apply(counter);
+
+        verifyZeroInteractions(counter);
     }
 }

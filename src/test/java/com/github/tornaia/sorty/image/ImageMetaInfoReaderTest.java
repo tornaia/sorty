@@ -1,5 +1,6 @@
-package com.github.tornaia.sorty.metadata.reader;
+package com.github.tornaia.sorty.image;
 
+import com.github.tornaia.sorty.image.ImageMetaInfoReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,20 +11,20 @@ import java.io.InputStream;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(MockitoJUnitRunner.class)
-public class WrapperMetadataReaderTest {
+public class ImageMetaInfoReaderTest {
 
     @InjectMocks
-    private MetadataReader metadataReader;
+    private ImageMetaInfoReader imageMetaInfoReader;
 
     @Test
     public void exifImageIsRead() throws Exception {
         InputStream resourceAsStream = getClass().getResourceAsStream("/exif.jpg");
-        assertNotNull(metadataReader.read(resourceAsStream));
+        assertNotNull(imageMetaInfoReader.read(resourceAsStream));
     }
 
     @Test
     public void blankImageIsRead() throws Exception {
         InputStream resourceAsStream = getClass().getResourceAsStream("/blank.jpg");
-        assertNotNull(metadataReader.read(resourceAsStream));
+        assertNotNull(imageMetaInfoReader.read(resourceAsStream));
     }
 }

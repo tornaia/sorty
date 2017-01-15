@@ -2,17 +2,23 @@ package com.github.tornaia.sorty.explorer;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ImageFileFilter implements FileFilter {
 
-    private static final Pattern IMAGE_PATTERN = Pattern.compile("([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)");
+    private static final Set<String> IMAGE_EXTENSIONS = new HashSet<String>(Arrays.asList(new String[]{"jpg", "jpeg"}));
 
     @Override
     public boolean accept(File file) {
         String fileName = file.getName();
-        Matcher matcher = IMAGE_PATTERN.matcher(fileName);
-        return matcher.matches();
+        int lastIndexOfDot = fileName.lastIndexOf('.');
+        boolean hasExtension = lastIndexOfDot != -1;
+        if (!hasExtension) {
+            return false;
+        }
+        String extension = fileName.substring(lastIndexOfDot + 1).toLowerCase();
+        return IMAGE_EXTENSIONS.contains(extension);
     }
 }

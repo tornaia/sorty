@@ -23,10 +23,11 @@
 
         <!-- Sonar -->
         <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
-        <coverage.reports.dir>${project.basedir}/../target/coverage-reports</coverage.reports.dir>
+        <coverage.reports.dir>${project.basedir}/target/coverage-reports</coverage.reports.dir>
         <sonar.jacoco.reportPaths>${coverage.reports.dir}/jacoco.exec</sonar.jacoco.reportPaths>
 		
         <!-- Plugin -->
+        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
         <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
@@ -57,6 +58,12 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                </plugin>
+			
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
@@ -73,7 +80,7 @@
                     <version>${jacoco-maven-plugin.version}</version>
                     <configuration>
                         <includes>
-                            <include>com.github.tornaia.sync.*</include>
+                            <include>com.github.tornaia.sorty.*</include>
                         </includes>
                         <append>true</append>
                     </configuration>

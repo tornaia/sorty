@@ -2,6 +2,7 @@ package com.github.tornaia.sorty.algorithm;
 
 import com.github.tornaia.sorty.album.Album;
 import com.github.tornaia.sorty.album.Albums;
+import com.github.tornaia.sorty.image.Images;
 import com.github.tornaia.sorty.image.Image;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -10,7 +11,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class GroupingBasedOnTime implements SortingStrategy {
+public class GroupingBasedOnDate implements SortingStrategy {
 
     @Override
     public Albums sort(Images images) {

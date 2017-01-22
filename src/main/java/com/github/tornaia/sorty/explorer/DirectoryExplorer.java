@@ -1,7 +1,7 @@
 package com.github.tornaia.sorty.explorer;
 
 import com.drew.imaging.ImageProcessingException;
-import com.github.tornaia.sorty.algorithm.Images;
+import com.github.tornaia.sorty.image.Images;
 import com.github.tornaia.sorty.exception.SortingCannotBeCompletedException;
 import com.github.tornaia.sorty.image.Image;
 import com.github.tornaia.sorty.image.ImageMetaInfo;

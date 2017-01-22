@@ -1,6 +1,6 @@
 package com.github.tornaia.sorty.explorer;
 
-import com.github.tornaia.sorty.algorithm.Images;
+import com.github.tornaia.sorty.image.Images;
 import com.github.tornaia.sorty.image.Image;
 import com.github.tornaia.sorty.image.ImageMatcher;
 import com.github.tornaia.sorty.image.ImageMetaInfoMatcher;

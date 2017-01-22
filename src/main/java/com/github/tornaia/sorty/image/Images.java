@@ -1,4 +1,4 @@
-package com.github.tornaia.sorty.algorithm;
+package com.github.tornaia.sorty.image;
 
 import com.github.tornaia.sorty.image.Image;
 

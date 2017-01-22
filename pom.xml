@@ -9,15 +9,18 @@
    <version>0.1-SNAPSHOT</version>
 
    <properties>
+      <!-- Global -->
       <file.encoding>UTF-8</file.encoding>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       <java.version>1.8</java.version>
 
+      <!-- Dependencies -->
       <metadata-extractor.version>2.9.1</metadata-extractor.version>
       <commons-io.version>2.5</commons-io.version>
       <commons-lang3.version>3.5</commons-lang3.version>
 
+      <!-- Test dependencies -->
       <junit.version>4.12</junit.version>
       <mockito-core.version>2.6.2</mockito-core.version>
 

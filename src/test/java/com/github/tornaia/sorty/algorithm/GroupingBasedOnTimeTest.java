@@ -8,9 +8,6 @@ import com.github.tornaia.sorty.image.Image;
 import com.github.tornaia.sorty.image.ImageMetaInfo;
 import com.github.tornaia.sorty.image.Location;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,11 +17,9 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
 
-@RunWith(MockitoJUnitRunner.class)
 public class GroupingBasedOnTimeTest {
 
-    @InjectMocks
-    private GroupingBasedOnTime groupingBasedOnTime;
+    private GroupingBasedOnTime groupingBasedOnTime = new GroupingBasedOnTime();
 
     @Test
     public void oneAlbum() {

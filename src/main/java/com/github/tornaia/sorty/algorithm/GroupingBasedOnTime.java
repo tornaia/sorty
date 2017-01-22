@@ -16,7 +16,7 @@ public class GroupingBasedOnTime implements SortingStrategy {
     public Albums sort(Images images) {
         Map<Date, Set<Image>> imagesPerDates = new HashMap<>();
         Consumer<Image> getDates = image -> {
-            Optional<Date> optionalDate = image.getMetadata().getDate();
+            Optional<Date> optionalDate = image.getImageMetaInfo().getDate();
             if (optionalDate.isPresent()) {
                 Date date = optionalDate.get();
                 Date truncatedDate = DateUtils.truncate(date, Calendar.DATE);

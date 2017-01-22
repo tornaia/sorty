@@ -4,16 +4,16 @@ import java.nio.file.Path;
 
 public class Image {
 
-    private final ImageMetaInfo metadata;
+    private final ImageMetaInfo imageMetaInfo;
     private final Path source;
 
-    public Image(ImageMetaInfo metadata, Path source) {
-        this.metadata = metadata;
+    public Image(ImageMetaInfo imageMetaInfo, Path source) {
+        this.imageMetaInfo = imageMetaInfo;
         this.source = source;
     }
 
-    public ImageMetaInfo getMetadata() {
-        return metadata;
+    public ImageMetaInfo getImageMetaInfo() {
+        return imageMetaInfo;
     }
 
     public Path getSource() {

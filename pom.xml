@@ -29,8 +29,6 @@
 
       <!-- Sonar -->
       <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
-      <coverage.reports.dir>${project.basedir}/target/coverage-reports</coverage.reports.dir>
-      <sonar.jacoco.reportPaths>${coverage.reports.dir}/jacoco.exec</sonar.jacoco.reportPaths>
 
       <!-- Plugin -->
       <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
@@ -70,10 +68,6 @@
                   <goals>
                      <goal>prepare-agent</goal>
                   </goals>
-                  <configuration>
-                     <destFile>${sonar.jacoco.reportPaths}</destFile>
-                     <propertyName>surefireArgLine</propertyName>
-                  </configuration>
                </execution>
                <execution>
                   <id>post-unit-test</id>
@@ -81,10 +75,6 @@
                   <goals>
                      <goal>report</goal>
                   </goals>
-                  <configuration>
-                     <dataFile>${sonar.jacoco.reportPaths}</dataFile>
-                     <outputDirectory>${coverage.reports.dir}/jacoco</outputDirectory>
-                  </configuration>
                </execution>
             </executions>
          </plugin>

@@ -42,7 +42,9 @@ public class ImageBuilder {
     }
 
     private Optional<Location> getLocation(String locationStr) {
-        if ("Siófok".equals(locationStr)) {
+        if ("Keszthely".equals(locationStr)) {
+            return Optional.of(new Location(46.76812D, 17.24317D));
+        } else if ("Siófok".equals(locationStr)) {
             return Optional.of(new Location(46.90413D, 18.058D));
         }
         return Optional.empty();

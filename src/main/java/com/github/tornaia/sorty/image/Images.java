@@ -1,7 +1,6 @@
 package com.github.tornaia.sorty.image;
 
-import com.github.tornaia.sorty.image.Image;
-
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -16,5 +15,9 @@ public class Images {
 
     public void apply(Consumer<Image> action) {
         images.stream().forEach(action);
+    }
+
+    public Set<Image> getImages() {
+        return Collections.unmodifiableSet(images);
     }
 }

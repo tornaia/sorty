@@ -33,7 +33,6 @@
       <sonar.jacoco.reportPaths>${coverage.reports.dir}/jacoco.exec</sonar.jacoco.reportPaths>
 
       <!-- Plugin -->
-      <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
       <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
       <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
       <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
@@ -42,12 +41,6 @@
 
    <build>
       <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-clean-plugin</artifactId>
-            <version>${maven-clean-plugin.version}</version>
-         </plugin>
-
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>

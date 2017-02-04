@@ -23,7 +23,7 @@
 
       <!-- Test dependencies -->
       <junit.version>4.12</junit.version>
-      <mockito-core.version>2.6.2</mockito-core.version>
+      <mockito-core.version>2.7.1</mockito-core.version>
 
       <!-- Sonar -->
       <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>

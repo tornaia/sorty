@@ -18,6 +18,7 @@
 
       <!-- Dependencies -->
       <metadata-extractor.version>2.9.1</metadata-extractor.version>
+      <javaml.version>0.1.7</javaml.version>
       <commons-io.version>2.5</commons-io.version>
       <commons-lang3.version>3.5</commons-lang3.version>
 
@@ -118,6 +119,12 @@
       </dependency>
 
       <dependency>
+         <groupId>net.sf</groupId>
+         <artifactId>javaml</artifactId>
+         <version>${javaml.version}</version>
+      </dependency>
+
+      <dependency>
          <groupId>commons-io</groupId>
          <artifactId>commons-io</artifactId>
          <version>${commons-io.version}</version>
@@ -150,5 +157,13 @@
          <scope>test</scope>
       </dependency>
    </dependencies>
+
+   <repositories>
+      <repository>
+         <id>arrayrepo</id>
+         <name>array ca repo</name>
+         <url>http://corp.array.ca/nest-web/mavenrepo/</url>
+      </repository>
+   </repositories>
 
 </project>

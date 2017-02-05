@@ -42,4 +42,18 @@ public class GroupingBasedOnLocationTest {
                         new AlbumMatcher().name("Siófok").size(2)))
                 .size(2));
     }
+
+    @Test
+    public void twoAlbumsWithOneFileEach() {
+        Images images = new Images();
+        images.add(new ImageBuilder().date("2015-11-23 09:01:00").dimension("640x480").location("Keszthely").model("S7Edge").create());
+        images.add(new ImageBuilder().date("2016-07-02 17:32:11").dimension("640x480").location("Siófok").model("S7Edge").create());
+        Albums albums = groupingBasedOnLocation.sort(images);
+
+        assertThat(albums, new AlbumsMatcher()
+                .albums(hasItems(
+                        new AlbumMatcher().name("Keszthely").size(1),
+                        new AlbumMatcher().name("Siófok").size(1)))
+                .size(2));
+    }
 }

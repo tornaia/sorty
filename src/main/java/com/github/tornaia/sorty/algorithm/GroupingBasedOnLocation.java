@@ -34,7 +34,7 @@ public class GroupingBasedOnLocation implements SortingStrategy {
 
         Dataset[] clusters = null;
         outer:
-        for (int numberOfClusters = 1; numberOfClusters < unorganizedDataset.size(); ++numberOfClusters) {
+        for (int numberOfClusters = 1; numberOfClusters <= unorganizedDataset.size(); ++numberOfClusters) {
             KMeans kMeans = new KMeans(numberOfClusters);
             clusters = kMeans.cluster(unorganizedDataset);
             for (Dataset cluster : clusters) {

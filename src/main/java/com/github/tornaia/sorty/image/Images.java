@@ -9,6 +9,13 @@ public class Images {
 
     private Set<Image> images = new HashSet<>();
 
+    public Images() {
+    }
+
+    public Images(Set<Image> images) {
+        this.images.addAll(images);
+    }
+
     public void add(Image image) {
         images.add(image);
     }

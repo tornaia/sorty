@@ -3,7 +3,6 @@ package com.github.tornaia.sorty.album;
 import com.github.tornaia.sorty.image.Image;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 public class Album {

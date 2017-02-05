@@ -12,36 +12,16 @@ import java.util.Set;
 
 public class GeoNameProvider {
 
-    private Set<GeoName> geoNames = new HashSet<>();
+    private static final Set<GeoName> GEO_NAMES = new HashSet<>();
 
-    public GeoNameProvider() {
-        String huTxt;
-        try {
-            InputStream systemResourceAsStream = ClassLoader.getSystemResourceAsStream("HU.txt");
-            huTxt = IOUtils.toString(systemResourceAsStream, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException("Cannot read db file", e);
-        }
-        String[] lines = huTxt.split("\n");
-        int nameIdx = 1;
-        int latIdx = 4;
-        int lonIdx = 5;
-        for (String line : lines) {
-            String[] values = line.split("\t");
-            String name = values[nameIdx];
-            Location location = new Location(Double.parseDouble(values[latIdx]), Double.parseDouble(values[lonIdx]));
-            GeoName geoName = new GeoName(name, location);
-            geoNames.add(geoName);
-        }
-
-        if (geoNames.isEmpty()) {
-            throw new IllegalStateException("GeoName db is empty");
-        }
+    static {
+        load("HU");
+        load("CH");
     }
 
     public GeoName find(Location location) {
         GeoName closestGeoName = null;
-        for (GeoName candidateGeoName : geoNames) {
+        for (GeoName candidateGeoName : GEO_NAMES) {
             if (candidateGeoName.getName().equals("Ecsér")) {
                 continue;
             }
@@ -57,5 +37,26 @@ public class GeoNameProvider {
             }
         }
         return closestGeoName;
+    }
+
+    private static void load(String countryCode) {
+        String countryTxt;
+        try {
+            InputStream systemResourceAsStream = ClassLoader.getSystemResourceAsStream(countryCode + ".txt");
+            countryTxt = IOUtils.toString(systemResourceAsStream, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot read db file", e);
+        }
+        String[] lines = countryTxt.split("\n");
+        int nameIdx = 1;
+        int latIdx = 4;
+        int lonIdx = 5;
+        for (String line : lines) {
+            String[] values = line.split("\t");
+            String name = values[nameIdx];
+            Location location = new Location(Double.parseDouble(values[latIdx]), Double.parseDouble(values[lonIdx]));
+            GeoName geoName = new GeoName(name, location);
+            GEO_NAMES.add(geoName);
+        }
     }
 }
